@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aquala – Termos premium</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <nav aria-label="Navegación principal">
+      <a href="#" class="logo">Aquala</a>
+      <ul role="list">
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero" aria-labelledby="hero-titulo">
+      <h1 id="hero-titulo">Hidratación que te acompaña</h1>
+      <p>Termos premium diseñados para tu ritmo de vida. Fríos 24h, calientes 12h.</p>
+      <a href="#productos" class="btn-primary">Ver productos</a>
+    </section>
+
+    <section id="productos" aria-labelledby="productos-titulo">
+      <h2 id="productos-titulo">Nuestros termos</h2>
+      <div class="productos-grid">
+
+        <article class="producto-card">
+          <img src="https://placehold.co/300x300/a8d8ea/ffffff?text=Aquala+Classic" alt="Termo Aquala Classic color azul cielo" />
+          <h3>Aquala Classic</h3>
+          <p>El clásico rediseñado. 600ml, tapa rosca, acero inoxidable.</p>
+          <p class="precio">$25.000</p>
+          <button type="button">Agregar al carrito</button>
+        </article>
+
+        <article class="producto-card">
+          <img src="https://placehold.co/300x300/f7a8b8/ffffff?text=Aquala+Sport" alt="Termo Aquala Sport color rosa" />
+          <h3>Aquala Sport</h3>
+          <p>Tapa flip, ideal para el gym. 750ml, sin BPA.</p>
+          <p class="precio">$29.000</p>
+          <button type="button">Agregar al carrito</button>
+        </article>
+
+        <article class="producto-card">
+          <img src="https://placehold.co/300x300/b8e0b8/ffffff?text=Aquala+Mini" alt="Termo Aquala Mini color verde" />
+          <h3>Aquala Mini</h3>
+          <p>Compacto y liviano. 350ml, perfecto para el bolso.</p>
+          <p class="precio">$19.000</p>
+          <button type="button">Agregar al carrito</button>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="nosotros" aria-labelledby="nosotros-titulo">
+      <h2 id="nosotros-titulo">Nuestra historia</h2>
+      <p>Aquala nació de la idea de que hidratarse bien no debería ser complicado. Diseñamos termos que combinan funcionalidad, durabilidad y estética para acompañarte en cada momento del día.</p>
+    </section>
+
+    <section id="contacto" aria-labelledby="contacto-titulo">
+      <h2 id="contacto-titulo">Contacto</h2>
+      <form aria-label="Formulario de contacto" novalidate>
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="tu@email.com" required />
+
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="4" placeholder="¿En qué te podemos ayudar?" required></textarea>
+
+        <button type="submit">Enviar mensaje</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Aquala. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
