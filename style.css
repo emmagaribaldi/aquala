@@ -1,14 +1,15 @@
 /* ===== VARIABLES Y RESET ===== */
 :root {
-  --color-primario: #0077b6;
-  --color-secundario: #00b4d8;
-  --color-acento: #90e0ef;
-  --color-fondo: #f8f9fa;
-  --color-texto: #1a1a2e;
+  --color-primario: #E91E8C;
+  --color-secundario: #FFB3D9;
+  --color-acento: #FF6DB6;
+  --color-fondo: #ffffff;
+  --color-fondo-carta: #fff0f7;
+  --color-texto: #1a1a1a;
   --color-blanco: #ffffff;
-  --fuente-principal: 'Segoe UI', sans-serif;
-  --sombra: 0 4px 15px rgba(0, 119, 182, 0.15);
-  --radio: 12px;
+  --fuente-principal: 'Inter', sans-serif;
+  --sombra: 0 4px 15px rgba(233, 30, 140, 0.12);
+  --radio: 16px;
 }
 
 * {
@@ -24,10 +25,9 @@ body {
   line-height: 1.6;
 }
 
-/* ===== HEADER Y NAV ===== */
 header {
   background-color: var(--color-blanco);
-  box-shadow: var(--sombra);
+  border-bottom: 2px solid #ffe0f0;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -43,10 +43,11 @@ nav {
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 900;
   color: var(--color-primario);
   text-decoration: none;
+  letter-spacing: -1px;
 }
 
 nav ul {
@@ -58,7 +59,7 @@ nav ul {
 nav ul a {
   text-decoration: none;
   color: var(--color-texto);
-  font-weight: 500;
+  font-weight: 600;
   transition: color 0.3s;
 }
 
@@ -66,52 +67,56 @@ nav ul a:hover {
   color: var(--color-primario);
 }
 
-/* ===== HERO ===== */
 #hero {
-  background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
-  color: var(--color-blanco);
+  background: linear-gradient(135deg, var(--color-secundario), #ffe0f0);
+  color: var(--color-texto);
   text-align: center;
-  padding: 6rem 2rem;
+  padding: 7rem 2rem;
 }
 
 #hero h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
+  font-weight: 900;
   margin-bottom: 1rem;
+  letter-spacing: -2px;
+  color: var(--color-primario);
 }
 
 #hero p {
   font-size: 1.2rem;
   margin-bottom: 2rem;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .btn-primary {
-  background-color: var(--color-blanco);
-  color: var(--color-primario);
-  padding: 0.8rem 2rem;
-  border-radius: var(--radio);
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  padding: 0.9rem 2.5rem;
+  border-radius: 50px;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 1rem;
   transition: transform 0.3s, box-shadow 0.3s;
   display: inline-block;
 }
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(233, 30, 140, 0.4);
 }
 
-/* ===== PRODUCTOS ===== */
 #productos {
   max-width: 1200px;
-  margin: 4rem auto;
+  margin: 5rem auto;
   padding: 0 2rem;
 }
 
 #productos h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: 900;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  letter-spacing: -1px;
   color: var(--color-primario);
 }
 
@@ -122,16 +127,17 @@ nav ul a:hover {
 }
 
 .producto-card {
-  background: var(--color-blanco);
+  background: var(--color-fondo-carta);
   border-radius: var(--radio);
-  box-shadow: var(--sombra);
   padding: 1.5rem;
   text-align: center;
   transition: transform 0.3s;
+  border: 2px solid transparent;
 }
 
 .producto-card:hover {
   transform: translateY(-5px);
+  border-color: var(--color-primario);
 }
 
 .producto-card img {
@@ -142,6 +148,7 @@ nav ul a:hover {
 
 .producto-card h3 {
   font-size: 1.3rem;
+  font-weight: 800;
   margin-bottom: 0.5rem;
   color: var(--color-primario);
 }
@@ -153,8 +160,8 @@ nav ul a:hover {
 }
 
 .precio {
-  font-size: 1.3rem !important;
-  font-weight: 700;
+  font-size: 1.4rem !important;
+  font-weight: 900 !important;
   color: var(--color-primario) !important;
 }
 
@@ -163,29 +170,32 @@ nav ul a:hover {
   color: var(--color-blanco);
   border: none;
   padding: 0.7rem 1.5rem;
-  border-radius: var(--radio);
+  border-radius: 50px;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
   margin-top: 0.5rem;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
   width: 100%;
+  font-size: 0.95rem;
 }
 
 .producto-card button:hover {
-  background-color: var(--color-secundario);
+  background-color: var(--color-acento);
+  transform: scale(1.02);
 }
 
-/* ===== NOSOTROS ===== */
 #nosotros {
-  background-color: var(--color-primario);
+  background: linear-gradient(135deg, var(--color-primario), var(--color-acento));
   color: var(--color-blanco);
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 5rem 2rem;
 }
 
 #nosotros h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: 900;
   margin-bottom: 1rem;
+  letter-spacing: -1px;
 }
 
 #nosotros p {
@@ -195,17 +205,18 @@ nav ul a:hover {
   opacity: 0.9;
 }
 
-/* ===== CONTACTO ===== */
 #contacto {
   max-width: 600px;
-  margin: 4rem auto;
+  margin: 5rem auto;
   padding: 0 2rem;
 }
 
 #contacto h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: 900;
   text-align: center;
   margin-bottom: 2rem;
+  letter-spacing: -1px;
   color: var(--color-primario);
 }
 
@@ -216,17 +227,18 @@ form {
 }
 
 label {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-texto);
 }
 
 input, textarea {
   padding: 0.8rem;
-  border: 2px solid #ddd;
+  border: 2px solid #ffe0f0;
   border-radius: var(--radio);
   font-size: 1rem;
   font-family: var(--fuente-principal);
   transition: border-color 0.3s;
+  background: var(--color-fondo-carta);
 }
 
 input:focus, textarea:focus {
@@ -239,18 +251,31 @@ form button {
   color: var(--color-blanco);
   border: none;
   padding: 0.9rem;
-  border-radius: var(--radio);
+  border-radius: 50px;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 form button:hover {
-  background-color: var(--color-secundario);
+  background-color: var(--color-acento);
+  transform: scale(1.02);
 }
 
-/* ===== FOOTER ===== */
+.notificacion {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--color-primario);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  z-index: 999;
+  box-shadow: 0 4px 15px rgba(233, 30, 140, 0.4);
+}
+
 footer {
   background-color: var(--color-texto);
   color: var(--color-blanco);
@@ -259,10 +284,9 @@ footer {
   margin-top: 2rem;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   #hero h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   nav {
