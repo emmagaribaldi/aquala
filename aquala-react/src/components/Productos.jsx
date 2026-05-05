@@ -32,7 +32,7 @@ const Productos = ({ agregarAlCarrito }) => {
       <div className="productos-grid">
         {productos.map((producto) => (
           <article key={producto.id} className="producto-card">
-            <img src={producto.imagen} alt={producto.alt} />
+            <img src={producto.imagen.replace("img/", "/")} alt={producto.alt} />
             <h3>{producto.nombre}</h3>
             <p>{producto.descripcion}</p>
             <p className="precio">{formatearPrecio(producto.precio)}</p>

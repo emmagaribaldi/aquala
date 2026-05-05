@@ -2,7 +2,7 @@ const Header = ({ totalItems, onAbrirCarrito }) => {
   return (
     <header>
       <nav aria-label="Navegación principal">
-        <a href="#" className="logo">Aquala 🧊</a>
+        <a href="#" className="logo">Aquala</a>
         <ul role="list">
           <li><a href="#productos">Productos</a></li>
           <li><a href="#nosotros">Nosotros</a></li>
