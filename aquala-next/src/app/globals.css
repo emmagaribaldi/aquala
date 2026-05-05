@@ -121,7 +121,7 @@ nav ul a:hover {
 
 .hero-texto {
   flex: 1;
-  min-width: 400px;
+  min-width: 0;
 }
 
 .hero-texto h1 {
@@ -136,7 +136,6 @@ nav ul a:hover {
   font-size: 1.1rem;
   margin-bottom: 2rem;
   color: var(--color-texto-suave);
-  white-space: nowrap;
 }
 
 .hero-imagen {
@@ -356,14 +355,17 @@ footer {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  #hero h1 { font-size: 2.5rem; }
+  .hero-texto h1 { font-size: 2rem; letter-spacing: -1px; }
+  .hero-texto p { white-space: normal; }
   .hero-contenido { flex-direction: column; }
+  #hero { min-height: auto; padding: 3rem 1.5rem; }
   nav { flex-direction: column; gap: 1rem; }
-  nav ul { gap: 1rem; }
+  nav ul { gap: 1rem; flex-wrap: wrap; justify-content: center; }
   .productos-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 480px) {
+  .hero-texto h1 { font-size: 1.8rem; }
   .productos-grid { grid-template-columns: 1fr; }
 }
 
