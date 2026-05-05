@@ -1,26 +1,26 @@
 [
   {
     "id": 1,
-    "nombre": "Aquala Classic",
-    "precio": 15999,
-    "descripcion": "El termo esencial. 600ml, doble pared de acero inoxidable.",
-    "imagen": "https://placehold.co/300x300?text=Aquala+Classic",
-    "alt": "Termo Aquala Classic color azul"
+    "nombre": "Aquala Classic Lavender",
+    "precio": 50000,
+    "descripcion": "600ml, tapa freesip, doble pared de acero inoxidable. Mantiene tu bebida fría 24hs y caliente 12hs.",
+    "imagen": "img/classic.png",
+    "alt": "Termo Aquala Classic color lavanda con tapa freesip"
   },
   {
     "id": 2,
-    "nombre": "Aquala Sport",
-    "precio": 19999,
-    "descripcion": "Diseñado para el movimiento. 800ml, tapa con pico.",
-    "imagen": "https://placehold.co/300x300?text=Aquala+Sport",
-    "alt": "Termo Aquala Sport color verde"
+    "nombre": "Aquala Pink Cream",
+    "precio": 55000,
+    "descripcion": "600ml, tapa freesip, doble pared de acero inoxidable. Diseñado para llevarlo a donde vayas.",
+    "imagen": "img/sport.png",
+    "alt": "Termo Aquala Sway color crema con asa de cuero"
   },
   {
     "id": 3,
-    "nombre": "Aquala Pro",
-    "precio": 24999,
-    "descripcion": "El más resistente. 1L, ideal para aventuras extremas.",
-    "imagen": "https://placehold.co/300x300?text=Aquala+Pro",
-    "alt": "Termo Aquala Pro color negro"
+    "nombre": "Aquala SmoothSip Pink",
+    "precio": 60000,
+    "descripcion": "400ml, tapa con botón push, color rosa salmón y gris. Apta bebidas calientes y frías.",
+    "imagen": "img/pro.png",
+    "alt": "Termo Aquala SmoothSip color rosa salmón con tapa gris y botón rojo"
   }
 ]
