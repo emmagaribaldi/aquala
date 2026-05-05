@@ -1,23 +1,25 @@
 'use client'
-import { useState } from 'react'
 import Link from 'next/link'
 
-const Header = () => {
-  const [totalItems, setTotalItems] = useState(0)
-
+const Header = ({ totalItems, onAbrirCarrito }) => {
   return (
     <header>
       <nav aria-label="Navegación principal">
-        <Link href="/" className="logo">
-          Aquala
-          {totalItems > 0 && (
-            <span className="carrito-contador">{totalItems}</span>
-          )}
-        </Link>
+        <Link href="/" className="logo">Aquala</Link>
         <ul role="list">
           <li><Link href="#productos">Productos</Link></li>
           <li><Link href="#nosotros">Nosotros</Link></li>
           <li><Link href="#contacto">Contacto</Link></li>
+          <li>
+            <button
+              id="btn-carrito"
+              type="button"
+              aria-label="Abrir carrito"
+              onClick={onAbrirCarrito}
+            >
+              🛒 {totalItems > 0 && <span className="carrito-contador">{totalItems}</span>}
+            </button>
+          </li>
         </ul>
       </nav>
     </header>

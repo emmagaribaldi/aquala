@@ -1,12 +1,13 @@
-import { useState } from "react"
-import Header from "./components/Header"
-import Hero from "./components/Hero"
-import Productos from "./components/Productos"
-import Contacto from "./components/Contacto"
-import Footer from "./components/Footer"
-import Carrito from "./components/Carrito"
+'use client'
+import { useState } from 'react'
+import Header from './Header'
+import Hero from './Hero'
+import Productos from './Productos'
+import Contacto from './Contacto'
+import Footer from './Footer'
+import Carrito from './Carrito'
 
-function App() {
+const ClientLayout = () => {
   const [carrito, setCarrito] = useState([])
   const [carritoAbierto, setCarritoAbierto] = useState(false)
 
@@ -66,4 +67,4 @@ function App() {
   )
 }
 
-export default App
+export default ClientLayout

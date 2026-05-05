@@ -414,3 +414,29 @@ footer {
   .productos-grid { grid-template-columns: 1fr; }
   .categorias-grid { grid-template-columns: 1fr; }
 }
+
+#btn-carrito {
+  background: none;
+  border: 2px solid #FF6B9D;
+  color: #FF6B9D;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#btn-carrito:hover {
+  background: #FF6B9D;
+  color: white;
+}
+
+#carrito-contador {
+  background: #FF6B9D;
+  color: white;
+  border-radius: 50%;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.75rem;
+  margin-left: 0.2rem;
+}

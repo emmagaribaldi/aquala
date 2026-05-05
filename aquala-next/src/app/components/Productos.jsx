@@ -28,29 +28,16 @@ const productosData = [
   }
 ]
 
-const Productos = () => {
-  const [carrito, setCarrito] = useState([])
+const Productos = ({ agregarAlCarrito }) => {
   const [notificacion, setNotificacion] = useState('')
 
-  const agregarAlCarrito = (producto) => {
-    setCarrito((prev) => {
-      const existe = prev.find((item) => item.id === producto.id)
-      if (existe) {
-        return prev.map((item) =>
-          item.id === producto.id
-            ? { ...item, cantidad: item.cantidad + 1 }
-            : item
-        )
-      }
-      return [...prev, { ...producto, cantidad: 1 }]
-    })
+  const handleAgregar = (producto) => {
+    agregarAlCarrito(producto)
     setNotificacion(`✅ ${producto.nombre} agregado al carrito`)
     setTimeout(() => setNotificacion(''), 3000)
   }
 
-  const formatearPrecio = (precio) => {
-    return `$${precio.toLocaleString('es-AR')}`
-  }
+  const formatearPrecio = (precio) => `$${precio.toLocaleString('es-AR')}`
 
   return (
     <section id="productos" aria-label="Catálogo de productos">
@@ -70,7 +57,7 @@ const Productos = () => {
             <button
               type="button"
               aria-label={`Agregar ${producto.nombre} al carrito`}
-              onClick={() => agregarAlCarrito(producto)}
+              onClick={() => handleAgregar(producto)}
             >
               Agregar al carrito
             </button>
