@@ -4,7 +4,7 @@
     "nombre": "Aquala Classic Lavender",
     "precio": 50000,
     "descripcion": "600ml, tapa freesip, doble pared de acero inoxidable. Mantiene tu bebida fría 24hs y caliente 12hs.",
-    "imagen": "/classic.png",
+    "imagen": "img/classic.png",
     "alt": "Termo Aquala Classic color lavanda con tapa freesip"
   },
   {
@@ -12,7 +12,7 @@
     "nombre": "Aquala Sway Cream",
     "precio": 55000,
     "descripcion": "800ml, tapa freesip, doble pared de acero inoxidable. Diseñado para llevarlo a donde vayas.",
-    "imagen": "/sport.png",
+    "imagen": "img/sport.png",
     "alt": "Termo Aquala Sway color crema con asa de cuero"
   },
   {
@@ -20,7 +20,7 @@
     "nombre": "Aquala SmoothSip Pink",
     "precio": 60000,
     "descripcion": "400ml, tapa con botón push, color rosa salmón con detalles grises. Apta bebidas calientes o frias.",
-    "imagen": "/pro.png",
+    "imagen": "img/pro.png",
     "alt": "Termo Aquala SmoothSip color rosa salmón con tapa gris"
   }
 ]
