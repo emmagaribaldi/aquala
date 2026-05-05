@@ -130,7 +130,6 @@ nav ul a:hover {
   margin-bottom: 1rem;
   letter-spacing: -2px;
   color: var(--color-texto);
-  white-space: nowrap;
 }
 
 .hero-texto p {
