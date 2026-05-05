@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aquala – Termos Premium</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <nav aria-label="Navegación principal">
+        <a href="#" class="logo">Aquala 🧊</a>
+        <ul role="list">
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <main>
+      <section id="hero" aria-label="Presentación">
+        <h1>Hidratate con estilo</h1>
+        <p>Termos premium para cada aventura. Fríos 24hs, calientes 12hs.</p>
+        <a href="#productos" class="btn-primary">Ver productos</a>
+      </section>
+
+      <!-- PRODUCTOS -->
+      <section id="productos" aria-label="Catálogo de productos">
+        <h2>Nuestros termos</h2>
+        <div class="productos-grid">
+
+          <article class="producto-card">
+            <img src="https://placehold.co/300x300?text=Aquala+Classic" alt="Termo Aquala Classic color azul" />
+            <h3>Aquala Classic</h3>
+            <p>El termo esencial. 600ml, doble pared de acero inoxidable.</p>
+            <p class="precio">$15.999</p>
+            <button type="button" aria-label="Agregar Aquala Classic al carrito">Agregar al carrito</button>
+          </article>
+
+          <article class="producto-card">
+            <img src="https://placehold.co/300x300?text=Aquala+Sport" alt="Termo Aquala Sport color verde" />
+            <h3>Aquala Sport</h3>
+            <p>Diseñado para el movimiento. 800ml, tapa con pico.</p>
+            <p class="precio">$19.999</p>
+            <button type="button" aria-label="Agregar Aquala Sport al carrito">Agregar al carrito</button>
+          </article>
+
+          <article class="producto-card">
+            <img src="https://placehold.co/300x300?text=Aquala+Pro" alt="Termo Aquala Pro color negro" />
+            <h3>Aquala Pro</h3>
+            <p>El más resistente. 1L, ideal para aventuras extremas.</p>
+            <p class="precio">$24.999</p>
+            <button type="button" aria-label="Agregar Aquala Pro al carrito">Agregar al carrito</button>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- NOSOTROS -->
+      <section id="nosotros" aria-label="Sobre nosotros">
+        <h2>¿Quiénes somos?</h2>
+        <p>Aquala nació con una misión: crear termos que combinen diseño, durabilidad y sustentabilidad. Cada termo está hecho para acompañarte en tu día a día.</p>
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto" aria-label="Formulario de contacto">
+        <h2>Contacto</h2>
+        <form novalidate>
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required aria-required="true" />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="tu@email.com" required aria-required="true" />
+
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="4" placeholder="Tu mensaje..." required aria-required="true"></textarea>
+
+          <button type="submit">Enviar mensaje</button>
+        </form>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>&copy; 2026 Aquala. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>
