@@ -1,0 +1,280 @@
+/* ===== VARIABLES Y RESET ===== */
+:root {
+  --color-primario: #0077b6;
+  --color-secundario: #00b4d8;
+  --color-acento: #90e0ef;
+  --color-fondo: #f8f9fa;
+  --color-texto: #1a1a2e;
+  --color-blanco: #ffffff;
+  --fuente-principal: 'Segoe UI', sans-serif;
+  --sombra: 0 4px 15px rgba(0, 119, 182, 0.15);
+  --radio: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fuente-principal);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+}
+
+/* ===== HEADER Y NAV ===== */
+header {
+  background-color: var(--color-blanco);
+  box-shadow: var(--sombra);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primario);
+  text-decoration: none;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav ul a {
+  text-decoration: none;
+  color: var(--color-texto);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav ul a:hover {
+  color: var(--color-primario);
+}
+
+/* ===== HERO ===== */
+#hero {
+  background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+  color: var(--color-blanco);
+  text-align: center;
+  padding: 6rem 2rem;
+}
+
+#hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+#hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.btn-primary {
+  background-color: var(--color-blanco);
+  color: var(--color-primario);
+  padding: 0.8rem 2rem;
+  border-radius: var(--radio);
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* ===== PRODUCTOS ===== */
+#productos {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+#productos h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--color-primario);
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.producto-card {
+  background: var(--color-blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px);
+}
+
+.producto-card img {
+  width: 100%;
+  border-radius: var(--radio);
+  margin-bottom: 1rem;
+}
+
+.producto-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-primario);
+}
+
+.producto-card p {
+  color: #666;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.precio {
+  font-size: 1.3rem !important;
+  font-weight: 700;
+  color: var(--color-primario) !important;
+}
+
+.producto-card button {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: var(--radio);
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.producto-card button:hover {
+  background-color: var(--color-secundario);
+}
+
+/* ===== NOSOTROS ===== */
+#nosotros {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+#nosotros h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+#nosotros p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* ===== CONTACTO ===== */
+#contacto {
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+#contacto h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--color-primario);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label {
+  font-weight: 600;
+  color: var(--color-texto);
+}
+
+input, textarea {
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: var(--radio);
+  font-size: 1rem;
+  font-family: var(--fuente-principal);
+  transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-primario);
+}
+
+form button {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  border: none;
+  padding: 0.9rem;
+  border-radius: var(--radio);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: var(--color-secundario);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background-color: var(--color-texto);
+  color: var(--color-blanco);
+  text-align: center;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  #hero h1 {
+    font-size: 2rem;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  nav ul {
+    gap: 1rem;
+  }
+
+  .productos-grid {
+    grid-template-columns: 1fr;
+  }
+}
