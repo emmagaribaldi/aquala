@@ -1,52 +1,72 @@
-// ===== DATOS DE PRODUCTOS =====
-const productos = [
-  {
-    id: 1,
-    nombre: "Aquala Classic",
-    precio: 15999,
-    descripcion: "El termo esencial. 600ml, doble pared de acero inoxidable.",
-  },
-  {
-    id: 2,
-    nombre: "Aquala Sport",
-    precio: 19999,
-    descripcion: "Diseñado para el movimiento. 800ml, tapa con pico.",
-  },
-  {
-    id: 3,
-    nombre: "Aquala Pro",
-    precio: 24999,
-    descripcion: "El más resistente. 1L, ideal para aventuras extremas.",
-  },
-];
-
 // ===== CARRITO =====
 let carrito = [];
 
-// ===== FUNCIONES =====
-
-// Formatear precio en pesos argentinos
-const formatearPrecio = (precio) => {
-  return `$${precio.toLocaleString("es-AR")}`;
+// ===== FETCH - Cargar productos desde JSON =====
+const cargarProductos = async () => {
+  try {
+    const respuesta = await fetch("productos.json");
+    const productos = await respuesta.json();
+    renderizarProductos(productos);
+  } catch (error) {
+    console.error("Error al cargar productos:", error);
+    mostrarNotificacion("❌ Error al cargar los productos");
+  }
 };
 
-// Agregar producto al carrito
-const agregarAlCarrito = (id) => {
-  const producto = productos.find((p) => p.id === id);
+// ===== RENDER - Mostrar productos en el DOM =====
+const renderizarProductos = (productos) => {
+  const grid = document.querySelector(".productos-grid");
+  grid.innerHTML = "";
+
+  productos.forEach((producto) => {
+    const card = document.createElement("article");
+    card.classList.add("producto-card");
+    card.innerHTML = `
+      <img src="${producto.imagen}" alt="${producto.alt}" />
+      <h3>${producto.nombre}</h3>
+      <p>${producto.descripcion}</p>
+      <p class="precio">${formatearPrecio(producto.precio)}</p>
+      <button 
+        type="button" 
+        aria-label="Agregar ${producto.nombre} al carrito"
+        data-id="${producto.id}"
+        data-nombre="${producto.nombre}"
+        data-precio="${producto.precio}">
+        Agregar al carrito
+      </button>
+    `;
+    grid.appendChild(card);
+  });
+
+  // Delegación de eventos - un solo listener para todos los botones
+  grid.addEventListener("click", (e) => {
+    if (e.target.tagName === "BUTTON") {
+      const { id, nombre, precio } = e.target.dataset;
+      agregarAlCarrito(Number(id), nombre, Number(precio));
+    }
+  });
+};
+
+// ===== CARRITO =====
+const agregarAlCarrito = (id, nombre, precio) => {
   const itemExistente = carrito.find((item) => item.id === id);
 
   if (itemExistente) {
     itemExistente.cantidad++;
   } else {
-    carrito.push({ ...producto, cantidad: 1 });
+    carrito.push({ id, nombre, precio, cantidad: 1 });
   }
 
-  mostrarNotificacion(`✅ ${producto.nombre} agregado al carrito`);
+  mostrarNotificacion(`✅ ${nombre} agregado al carrito`);
   actualizarContadorCarrito();
   console.log("Carrito actual:", carrito);
 };
 
-// Mostrar notificación
+// ===== UTILIDADES =====
+const formatearPrecio = (precio) => {
+  return `$${precio.toLocaleString("es-AR")}`;
+};
+
 const mostrarNotificacion = (mensaje) => {
   const notif = document.createElement("div");
   notif.textContent = mensaje;
@@ -63,11 +83,9 @@ const mostrarNotificacion = (mensaje) => {
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   `;
   document.body.appendChild(notif);
-
   setTimeout(() => notif.remove(), 3000);
 };
 
-// Actualizar contador del carrito en el nav
 const actualizarContadorCarrito = () => {
   const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
   let contador = document.getElementById("carrito-contador");
@@ -89,7 +107,7 @@ const actualizarContadorCarrito = () => {
   contador.textContent = totalItems;
 };
 
-// ===== FORMULARIO DE CONTACTO =====
+// ===== FORMULARIO =====
 const validarFormulario = (e) => {
   e.preventDefault();
 
@@ -114,18 +132,12 @@ const validarFormulario = (e) => {
 
 // ===== INICIALIZACIÓN =====
 document.addEventListener("DOMContentLoaded", () => {
-  // Conectar botones de carrito con productos
-  const botones = document.querySelectorAll(".producto-card button");
-  botones.forEach((boton, index) => {
-    boton.addEventListener("click", () => agregarAlCarrito(index + 1));
-  });
+  cargarProductos();
 
-  // Conectar formulario
   const form = document.querySelector("form");
   if (form) {
     form.addEventListener("submit", validarFormulario);
   }
 
   console.log("🧊 Aquala iniciado correctamente");
-  console.log("Productos disponibles:", productos.map(p => p.nombre));
 });

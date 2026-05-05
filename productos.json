@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nombre": "Aquala Classic",
+    "precio": 15999,
+    "descripcion": "El termo esencial. 600ml, doble pared de acero inoxidable.",
+    "imagen": "https://placehold.co/300x300?text=Aquala+Classic",
+    "alt": "Termo Aquala Classic color azul"
+  },
+  {
+    "id": 2,
+    "nombre": "Aquala Sport",
+    "precio": 19999,
+    "descripcion": "Diseñado para el movimiento. 800ml, tapa con pico.",
+    "imagen": "https://placehold.co/300x300?text=Aquala+Sport",
+    "alt": "Termo Aquala Sport color verde"
+  },
+  {
+    "id": 3,
+    "nombre": "Aquala Pro",
+    "precio": 24999,
+    "descripcion": "El más resistente. 1L, ideal para aventuras extremas.",
+    "imagen": "https://placehold.co/300x300?text=Aquala+Pro",
+    "alt": "Termo Aquala Pro color negro"
+  }
+]
