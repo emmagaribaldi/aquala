@@ -1,35 +1,19 @@
 'use client'
-import { useState } from 'react'
-
-const productosData = [
-  {
-    id: 1,
-    nombre: "Aquala Classic Lavender",
-    precio: 50000,
-    descripcion: "600ml, tapa freesip, doble pared de acero inoxidable. Mantiene tu bebida fría 24hs y caliente 12hs.",
-    imagen: "/classic.png",
-    alt: "Termo Aquala Classic color lavanda con tapa freesip"
-  },
-  {
-    id: 2,
-    nombre: "Aquala Sway Cream",
-    precio: 55000,
-    descripcion: "800ml, asa de cuero, tapa freesip, doble pared de acero inoxidable. Diseñado para llevarlo a donde vayas.",
-    imagen: "/sport.png",
-    alt: "Termo Aquala Sway color crema con asa de cuero"
-  },
-  {
-    id: 3,
-    nombre: "Aquala SmoothSip Rosa",
-    precio: 60000,
-    descripcion: "1L, tapa con botón push, color rosa salmón con detalles grises. Perfecta para café, mate o agua fría.",
-    imagen: "/pro.png",
-    alt: "Termo Aquala SmoothSip color rosa salmón con tapa gris"
-  }
-]
+import { useState, useEffect } from 'react'
 
 const Productos = ({ agregarAlCarrito }) => {
+  const [productos, setProductos] = useState([])
   const [notificacion, setNotificacion] = useState('')
+  const [cargando, setCargando] = useState(true)
+
+  useEffect(() => {
+    fetch('/api/productos')
+      .then((res) => res.json())
+      .then((data) => {
+        setProductos(data)
+        setCargando(false)
+      })
+  }, [])
 
   const handleAgregar = (producto) => {
     agregarAlCarrito(producto)
@@ -39,16 +23,14 @@ const Productos = ({ agregarAlCarrito }) => {
 
   const formatearPrecio = (precio) => `$${precio.toLocaleString('es-AR')}`
 
+  if (cargando) return <p style={{ textAlign: 'center' }}>Cargando productos...</p>
+
   return (
     <section id="productos" aria-label="Catálogo de productos">
       <h2>Nuestros termos</h2>
-
-      {notificacion && (
-        <div className="notificacion">{notificacion}</div>
-      )}
-
+      {notificacion && <div className="notificacion">{notificacion}</div>}
       <div className="productos-grid">
-        {productosData.map((producto) => (
+        {productos.map((producto) => (
           <article key={producto.id} className="producto-card">
             <img src={producto.imagen} alt={producto.alt} />
             <h3>{producto.nombre}</h3>
