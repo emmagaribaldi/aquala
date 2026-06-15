@@ -1,9 +1,6 @@
 import { NextResponse } from 'next/server'
+import { supabase } from '@/lib/supabase'
 import { z } from 'zod'
-
-// Caché en memoria (se resetea al reiniciar el servidor)
-const ordenes = []
-let nextId = 1
 
 const ordenSchema = z.object({
   items: z.array(z.object({
@@ -17,7 +14,16 @@ const ordenSchema = z.object({
 })
 
 export async function GET() {
-  return NextResponse.json(ordenes)
+  const { data, error } = await supabase
+    .from('orders')
+    .select('*, order_items(*)')
+    .order('created_at', { ascending: false })
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
+
+  return NextResponse.json(data)
 }
 
 export async function POST(request) {
@@ -33,20 +39,33 @@ export async function POST(request) {
   }
 
   const { items, nombre, email } = resultado.data
-
   const total = items.reduce((acc, item) => acc + item.precio * item.cantidad, 0)
 
-  const nuevaOrden = {
-    id: nextId++,
-    nombre,
-    email,
-    items,
-    total,
-    estado: 'pendiente',
-    fecha: new Date().toISOString()
+  const { data: orden, error: ordenError } = await supabase
+    .from('orders')
+    .insert({ nombre, email, total, estado: 'pendiente' })
+    .select()
+    .single()
+
+  if (ordenError) {
+    return NextResponse.json({ error: ordenError.message }, { status: 500 })
   }
 
-  ordenes.push(nuevaOrden)
+  const orderItems = items.map((item) => ({
+    order_id: orden.id,
+    product_id: item.id,
+    nombre: item.nombre,
+    precio: item.precio,
+    cantidad: item.cantidad,
+  }))
 
-  return NextResponse.json(nuevaOrden, { status: 201 })
+  const { error: itemsError } = await supabase
+    .from('order_items')
+    .insert(orderItems)
+
+  if (itemsError) {
+    return NextResponse.json({ error: itemsError.message }, { status: 500 })
+  }
+
+  return NextResponse.json(orden, { status: 201 })
 }
