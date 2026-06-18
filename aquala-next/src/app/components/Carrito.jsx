@@ -1,4 +1,5 @@
 'use client'
+import { useRouter } from 'next/navigation'
 
 const formatearPrecio = (precio) =>
   `$${precio.toLocaleString("es-AR")}`
@@ -6,6 +7,7 @@ const formatearPrecio = (precio) =>
 const Carrito = ({ carrito, abierto, onCerrar, onCambiarCantidad, onEliminar, onVaciar }) => {
   const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0)
   const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0)
+  const router = useRouter()
 
   const finalizarCompra = async () => {
     if (carrito.length === 0) return
@@ -28,9 +30,9 @@ const Carrito = ({ carrito, abierto, onCerrar, onCambiarCantidad, onEliminar, on
       return
     }
 
-    alert(`Orden #${data.id} creada correctamente!`)
     onVaciar()
     onCerrar()
+    router.push(`/checkout?orden_id=${data.id}`)
   }
 
   return (
