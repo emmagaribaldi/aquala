@@ -42,6 +42,10 @@ export async function POST(request) {
         pending: 'http://localhost:3000/pago-pendiente',
       },
       external_reference: `orden_${orden.id}`,
+      metadata: {
+        orden_id: orden.id,
+      },
+      notification_url: 'https://bea1-2800-2130-5200-632a-4998-69dd-f3e-2833.ngrok-free.app/api/pagos/webhook',
     }
   })
 
