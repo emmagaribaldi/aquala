@@ -13,7 +13,7 @@ const supabase = createClient(
 
 const WEBHOOK_SECRET = "ac96cef94a3904e63265e728d20f01232d6368a67ecf826254516dbee2fd2952";
 
-function verificarFirma(request, body) {
+function verificarFirma(request) {
   const xSignature = request.headers.get("x-signature");
   const xRequestId = request.headers.get("x-request-id");
 
@@ -41,13 +41,48 @@ function verificarFirma(request, body) {
   return expected === hash;
 }
 
+async function actualizarStock(ordenId) {
+  const { data: items, error } = await supabase
+    .from("order_items")
+    .select("product_id, cantidad")
+    .eq("order_id", ordenId);
+
+  if (error || !items) {
+    console.error("Error obteniendo items de la orden:", error);
+    return;
+  }
+
+  for (const item of items) {
+    const { data: product } = await supabase
+      .from("products")
+      .select("stock")
+      .eq("id", item.product_id)
+      .single();
+
+    if (!product) continue;
+
+    const nuevoStock = Math.max(0, product.stock - item.cantidad);
+
+    const { error: updateError } = await supabase
+      .from("products")
+      .update({ stock: nuevoStock })
+      .eq("id", item.product_id);
+
+    if (updateError) {
+      console.error(`Error actualizando stock del producto ${item.product_id}:`, updateError);
+    } else {
+      console.log(`Stock producto ${item.product_id}: ${product.stock} → ${nuevoStock}`);
+    }
+  }
+}
+
 export async function POST(request) {
   try {
     const body = await request.json();
 
     const xSignature = request.headers.get("x-signature");
     if (xSignature) {
-      const firmaValida = verificarFirma(request, body);
+      const firmaValida = verificarFirma(request);
       if (!firmaValida) {
         console.log("Firma inválida — webhook rechazado");
         return Response.json({ error: "Firma inválida" }, { status: 401 });
@@ -68,8 +103,29 @@ export async function POST(request) {
       return Response.json({ error: "Sin payment_id" }, { status: 400 });
     }
 
+    // Manejo de reintentos: verificar si ya procesamos este pago
+    const { data: ordenExistente } = await supabase
+      .from("orders")
+      .select("status")
+      .eq("id", `${paymentId}`)
+      .single();
+
     const paymentClient = new Payment(mercadopago);
-    const payment = await paymentClient.get({ id: paymentId });
+    let payment;
+    let intentos = 0;
+    const maxIntentos = 3;
+
+    while (intentos < maxIntentos) {
+      try {
+        payment = await paymentClient.get({ id: paymentId });
+        break;
+      } catch (err) {
+        intentos++;
+        console.log(`Intento ${intentos} fallido, reintentando...`);
+        if (intentos === maxIntentos) throw err;
+        await new Promise((r) => setTimeout(r, 1000 * intentos));
+      }
+    }
 
     console.log("Estado del pago:", payment.status);
     console.log("Metadata:", payment.metadata);
@@ -89,6 +145,18 @@ export async function POST(request) {
 
     const nuevoEstado = estadoMap[payment.status] || payment.status;
 
+    const { data: ordenActual } = await supabase
+      .from("orders")
+      .select("status")
+      .eq("id", ordenId)
+      .single();
+
+    // Evitar reprocesar si ya está pagado
+    if (ordenActual?.status === "pagado") {
+      console.log(`Orden ${ordenId} ya estaba pagada — ignorando reintento`);
+      return Response.json({ received: true, status: "already_processed" });
+    }
+
     const { error } = await supabase
       .from("orders")
       .update({ status: nuevoEstado })
@@ -100,6 +168,12 @@ export async function POST(request) {
     }
 
     console.log(`Orden ${ordenId} actualizada a: ${nuevoEstado}`);
+
+    // Actualizar stock solo si el pago fue aprobado
+    if (payment.status === "approved") {
+      await actualizarStock(ordenId);
+    }
+
     return Response.json({ received: true, status: nuevoEstado });
   } catch (error) {
     console.error("Error en webhook:", error);
