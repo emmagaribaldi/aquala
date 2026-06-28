@@ -1,8 +1,8 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const searchParams = useSearchParams()
   const orden_id = searchParams.get('orden_id')
   const [orden, setOrden] = useState(null)
@@ -79,5 +79,13 @@ export default function CheckoutPage() {
         {pagando ? 'Redirigiendo...' : 'Pagar con Mercado Pago'}
       </button>
     </main>
+  )
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<p style={{ padding: '2rem' }}>Cargando...</p>}>
+      <CheckoutContent />
+    </Suspense>
   )
 }
