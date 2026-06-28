@@ -3,6 +3,8 @@ import { useState } from 'react'
 import Header from './Header'
 import Hero from './Hero'
 import Productos from './Productos'
+import Nosotros from './Nosotros'
+import Comentarios from './Comentarios'
 import Contacto from './Contacto'
 import Footer from './Footer'
 import Carrito from './Carrito'
@@ -52,6 +54,8 @@ const ClientLayout = () => {
       <main>
         <Hero />
         <Productos agregarAlCarrito={agregarAlCarrito} />
+        <Comentarios />
+        <Nosotros />
         <Contacto />
       </main>
       <Footer />
