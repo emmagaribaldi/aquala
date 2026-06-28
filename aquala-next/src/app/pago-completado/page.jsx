@@ -1,7 +1,7 @@
 'use client'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, Suspense } from 'next/navigation'
 
-export default function PagoCompletado() {
+function PagoCompletadoContent() {
   const searchParams = useSearchParams()
   const payment_id = searchParams.get('payment_id')
   const external_reference = searchParams.get('external_reference')
@@ -20,5 +20,13 @@ export default function PagoCompletado() {
         </div>
       </div>
     </main>
+  )
+}
+
+export default function PagoCompletado() {
+  return (
+    <Suspense fallback={<p style={{ padding: '2rem' }}>Cargando...</p>}>
+      <PagoCompletadoContent />
+    </Suspense>
   )
 }
