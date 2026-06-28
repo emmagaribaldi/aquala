@@ -45,7 +45,7 @@ export async function POST(request) {
       metadata: {
         orden_id: orden.id,
       },
-      notification_url: 'https://bea1-2800-2130-5200-632a-4998-69dd-f3e-2833.ngrok-free.app/api/pagos/webhook',
+      notification_url: 'https://9013-2800-2130-5200-632a-74d2-59a-97a4-1562.ngrok-free.app/api/pagos/webhook',
     }
   })
 
